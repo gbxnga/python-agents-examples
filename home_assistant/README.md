@@ -20,13 +20,13 @@ Create a `.env` file in the project root (or set these variables in your environ
 
 | Variable                | Description                                                      |
 |-------------------------|------------------------------------------------------------------|
-| `HOMEAUTOMAITON_TOKEN`  | Your Home Assistant long-lived access token                      |
+| `HOMEAUTOMATION_TOKEN`  | Your Home Assistant long-lived access token                      |
 | `HOMEAUTOMATION_URL`    | (Optional) Home Assistant base URL (default: `http://localhost:8123`) |
 
 **Example `.env**:**
 
 ```
-HOMEAUTOMAITON_TOKEN=your_home_assistant_token_here
+HOMEAUTOMATION_TOKEN=your_home_assistant_token_here
 HOMEAUTOMATION_URL=http://localhost:8123
 ```
 

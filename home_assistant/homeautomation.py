@@ -20,7 +20,7 @@ logger = logging.getLogger("listen-and-respond")
 logger.setLevel(logging.INFO)
 
 HOT_WORD = "hey casa"
-HOMEAUTOMAITON_TOKEN = os.getenv("HOMEAUTOMAITON_TOKEN")
+HOMEAUTOMATION_TOKEN = os.getenv("HOMEAUTOMATION_TOKEN")
 HOMEAUTOMATION_URL = os.getenv("HOMEAUTOMATION_URL", "http://localhost:8123")
 
 class SimpleAgent(Agent):
@@ -93,12 +93,12 @@ class SimpleAgent(Agent):
     @function_tool()
     async def list_devices(self) -> List[Dict[str, str]]:
         """List all available devices in the home automation system."""
-        if not HOMEAUTOMAITON_TOKEN:
+        if not HOMEAUTOMATION_TOKEN:
             self.session.say("Sorry, I can't list devices right now - the token is not configured")
             return []
 
         url = f"{HOMEAUTOMATION_URL}/api/states"
-        headers = {"Authorization": f"Bearer {HOMEAUTOMAITON_TOKEN}"}
+        headers = {"Authorization": f"Bearer {HOMEAUTOMATION_TOKEN}"}
 
         try:
             response = requests.get(url, headers=headers, timeout=10)
@@ -130,7 +130,7 @@ class SimpleAgent(Agent):
             entity_id: The ID of the device to control (e.g. 'light.kitchen')
             state: Either 'on' or 'off'
         """
-        if not HOMEAUTOMAITON_TOKEN:
+        if not HOMEAUTOMATION_TOKEN:
             self.session.say("Sorry, I can't control devices right now - the token is not configured")
             return
 
@@ -140,7 +140,7 @@ class SimpleAgent(Agent):
 
         # First get the device's friendly name
         url = f"{HOMEAUTOMATION_URL}/api/states/{entity_id}"
-        headers = {"Authorization": f"Bearer {HOMEAUTOMAITON_TOKEN}"}
+        headers = {"Authorization": f"Bearer {HOMEAUTOMATION_TOKEN}"}
         
         try:
             response = requests.get(url, headers=headers, timeout=10)
